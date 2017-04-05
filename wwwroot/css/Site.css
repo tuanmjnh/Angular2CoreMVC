@@ -52,8 +52,7 @@ input[type="checkbox"].input-validation-error {
 .mb20 {
     margin-bottom: 20px
 }
-
-.modal {
+/*.modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -63,26 +62,23 @@ input[type="checkbox"].input-validation-error {
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
     outline: 0;
-}
+}*/
 
 .fade {
-    opacity: 0;
-    -webkit-transition: opacity .15s linear;
-    -o-transition: opacity .15s linear;
-    transition: opacity .15s linear;
+    opacity: 1;
 }
 
-    .fade.in {
+    /*.fade.in {
         opacity: 1;
-    }
+    }*/
 
-.modal-dialog {
+/*.modal-dialog {
     position: relative;
     width: auto;
     margin: 10px;
-}
+}*/
 
-.modal.in .modal-dialog {
+/*.modal.in .modal-dialog {
     -webkit-transform: translate(0,0);
     -ms-transform: translate(0,0);
     -o-transform: translate(0,0);
@@ -97,11 +93,11 @@ input[type="checkbox"].input-validation-error {
     -ms-transform: translate(0,-25%);
     -o-transform: translate(0,-25%);
     transform: translate(0,-25%);
-}
+}*/
 
 @media (min-width: 768px) {
     .modal-dialog {
         width: 600px;
-        margin: 15% auto;
+        margin: 30px auto;
     }
 }

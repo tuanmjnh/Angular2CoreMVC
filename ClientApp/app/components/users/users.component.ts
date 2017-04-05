@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { ConfirmComponent } from '../modal/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+//import { ConfirmComponent } from '../modal/confirm.component';
+//import { DialogService } from "ng2-bootstrap-modal";
 
 @Component({
     selector: 'users',
@@ -13,33 +13,33 @@ import { DialogService } from "ng2-bootstrap-modal";
 export class UsersComponent {
     public users: Users[];
 
-    constructor(http: Http, private dialogService: DialogService) {
+    constructor(http: Http) { // private dialogService: DialogService
         http.get('/api/Users/Get').subscribe(result => {
             this.users = result.json() as Users[];
             this.users.forEach(x => x.state = false);
         });
     }
     //Modal
-    showConfirm() {
-        let disposable = this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirm title',
-            message: 'Confirm message'
-        })
-            .subscribe((isConfirmed) => {
-                //We get dialog result
-                if (isConfirmed) {
-                    alert('accepted');
-                }
-                else {
-                    alert('declined');
-                }
-            });
+    //showConfirm() {
+    //    let disposable = this.dialogService.addDialog(ConfirmComponent, {
+    //        title: 'Confirm title',
+    //        message: 'Confirm message'
+    //    })
+    //        .subscribe((isConfirmed) => {
+    //            //We get dialog result
+    //            if (isConfirmed) {
+    //                alert('accepted');
+    //            }
+    //            else {
+    //                alert('declined');
+    //            }
+    //        });
         //We can close dialog calling disposable.unsubscribe();
         //If dialog was not closed manually close it by timeout
         //setTimeout(() => {
         //    disposable.unsubscribe();
         //}, 10000);
-    }
+    //}
     //CheckBox
     checkAll(ev) {
         this.users.forEach(x => x.state = ev.target.checked)

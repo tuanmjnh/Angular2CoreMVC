@@ -8,7 +8,7 @@ module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     const sharedConfig = {
         stats: { modules: false },
-        resolve: { extensions: [ '.js' ] },
+        resolve: { extensions: ['.js'] },
         module: {
             rules: [
                 { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
@@ -26,12 +26,14 @@ module.exports = (env) => {
                 '@angular/platform-server',
                 'angular2-universal',
                 'angular2-universal-polyfills',
+                'moment/moment.js',
+                'tether/dist/js/tether.min.js',
                 'bootstrap',
-                'bootstrap/dist/css/bootstrap.css',
+                'bootstrap/dist/css/bootstrap.min.css',
                 'es6-shim',
                 'es6-promise',
                 'event-source-polyfill',
-				'font-awesome/css/font-awesome.min.css',
+                'font-awesome/css/font-awesome.min.css',
                 'jquery',
                 'zone.js',
             ]
@@ -42,7 +44,9 @@ module.exports = (env) => {
             library: '[name]_[hash]'
         },
         plugins: [
-            new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
+            new webpack.ProvidePlugin({
+                $: 'jquery', jQuery: 'jquery', "window.jQuery": "jquery", "Tether": 'tether'
+            }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.ContextReplacementPlugin(/\@angular\b.*\b(bundles|linker)/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/11580
             new webpack.IgnorePlugin(/^vertx$/) // Workaround for https://github.com/stefanpenner/es6-promise/issues/100
         ]
@@ -74,7 +78,7 @@ module.exports = (env) => {
             libraryTarget: 'commonjs2',
         },
         module: {
-            rules: [ { test: /\.css(\?|$)/, use: ['to-string-loader', 'css-loader'] } ]
+            rules: [{ test: /\.css(\?|$)/, use: ['to-string-loader', 'css-loader'] }]
         },
         entry: { vendor: ['aspnet-prerendering'] },
         plugins: [
