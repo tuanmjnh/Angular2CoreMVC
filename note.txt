@@ -23,6 +23,7 @@ webpack --config webpack.config.vendor.js
 //Extensions
 npm install --save ng2-bootstrap
 //npm install --save ng2-bootstrap bootstrap@next 
+//npm install ngx-bootstrap bootstrap@next --save
 npm install tether --save
 npm install --save font-awesome
 npm install --save ng2-bootstrap-modal

@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="pull-left">
-            <input type="text" class="form-control" placeholder="Search..."/>
+            <input type="text" class="form-control" placeholder="Search..." />
         </div>
         <div class="pull-right">
             <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -22,7 +22,7 @@
             <th>Tên đầy đủ</th>
             <th>Điện thoại</th>
             <th>Email</th>
-            <th><input type="checkbox" name="chkAll" [checked]="isAllChecked()" (change)="checkAll($event)"/></th>
+            <th><input type="checkbox" name="chkAll" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
         </tr>
     </thead>
     <tbody>
@@ -32,27 +32,35 @@
             <td>{{ user.mobile }}</td>
             <td>{{ user.email }}</td>
             <td>
-                <input type="checkbox" name="userCheck[]" value="{{user.id}}" [(ngModel)]="user.state"/>
+                <input type="checkbox" name="userCheck[]" value="{{user.id}}" [(ngModel)]="user.state" />
             </td>
         </tr>
     </tbody>
 </table>
-<button type="button" class="btn btn-primary" (click)="staticModal.show()">Static modal</button>
-
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title pull-left">Static modal</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<button type="button" class="btn btn-primary" (click)="childModal.show()">Open modal</button>
+<form (ngSubmit)="onSubmit()">
+    <modal-action #childModal [title]="'Thêm mới tài khoản'" [btnAction]="'Thêm mới'" [btnCancel]="'Quay lại'">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="username" required minlength="6" maxlength="50" name="username" >
+                <!--<div *ngIf="username.errors && (username.dirty || username.touched)"
+                     class="alert alert-danger">
+                    <div [hidden]="!username.errors.required">
+                        Name is required
+                    </div>
+                    <div [hidden]="!username.errors.minlength">
+                        Name must be at least 4 characters long.
+                    </div>
+                    <div [hidden]="!username.errors.maxlength">
+                        Name cannot be more than 50 characters long.
+                    </div>
+                </div>-->
             </div>
-            <div class="modal-body">
-                This is static modal, backdrop click will not close it.
-                Click <b>&times;</b> to close modal.
+            <div class="form-group">
+                <label for="alterEgo">Alter Ego</label>
+                <input type="text" class="form-control" id="alterEgo">
             </div>
         </div>
-    </div>
-</div>
+    </modal-action>
+</form>

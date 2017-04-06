@@ -3,20 +3,21 @@ import { RouterModule } from '@angular/router';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { FormsModule } from '@angular/forms';
 import { UniversalModule } from 'angular2-universal';
+//import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 //Extentions
-import { ModalModule } from 'ng2-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 //import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 //Users
 import { UsersComponent } from './components/users/users.component';
-//import { usersModalCreateComponent } from './components/users/usersModalCreate.component';
-//Modal
-import { ConfirmComponent } from './components/modal/confirm.component';
-import { TestModalComponent } from './components/modal/testmodal.component';
+import { modalActionComponent } from './components/common/modalAction.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HeroFormTemplateModule } from './components/template/hero-form-template.module';
+import { HeroFormReactiveModule } from './components/reactive/hero-form-reactive.module';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -28,13 +29,16 @@ import { TestModalComponent } from './components/modal/testmodal.component';
         HomeComponent,
         //Users
         UsersComponent,
-        //usersModalCreateComponent
-        ConfirmComponent,
-        TestModalComponent
+        modalActionComponent,
+        ProfileComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
+        //CookieService,
         FormsModule,
+        //ReactiveFormsModule,
+        HeroFormReactiveModule,
+        HeroFormTemplateModule,
         ModalModule.forRoot(),
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -44,14 +48,10 @@ import { TestModalComponent } from './components/modal/testmodal.component';
             //Users
             { path: 'users', component: UsersComponent },
             //Test
-            { path: 'TestModal', component: TestModalComponent },
+            { path: 'profile', component: ProfileComponent },
             //
             { path: '**', redirectTo: 'home' }
         ])
-    ],
-    //Don't forget to add the component to entryComponents section
-    entryComponents: [
-        ConfirmComponent
     ]
 })
 export class AppModule {
