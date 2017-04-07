@@ -13,6 +13,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { ModalModule } from 'ngx-bootstrap';
 //import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 //Users
+import { UsersFormTemplateModule } from './components/users/UsersFormTemplateModule';
 import { UsersComponent } from './components/users/users.component';
 import { modalActionComponent } from './components/common/modalAction.component';
 import { ProfileComponent } from './components/profile/profile.component';

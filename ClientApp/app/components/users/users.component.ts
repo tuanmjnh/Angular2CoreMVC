@@ -3,8 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, F
 import { ActivatedRoute, Router, CanDeactivate } from '@angular/router'
 import { Http } from '@angular/http';
 import { ModalDirective } from 'ngx-bootstrap/modal'
-import { Users } from "../models/Users";
+import { Users } from "../models/users";
 import { modalActionComponent } from "../common/modalAction.component";
+import { Hero } from '../shared/hero';
 
 @Component({
     selector: 'users',
@@ -12,19 +13,22 @@ import { modalActionComponent } from "../common/modalAction.component";
     templateUrl: './users.component.html'
 })
 export class UsersComponent{
-    //public UserForm: FormGroup;
+    powers = ['Really Smart', 'Super Flexible', 'Weather Changer'];
+    //hero = new Hero(18, 'Dr. WhatIsHisWayTooLongName', this.powers[0], 'Dr. What');
+    user = new Users(null, '', '', '', '', '', '', '', '', 0, '', new Date(), '', new Date(), new Date(), '', 1, '', false);
     public submitted: boolean;
     public events: any[] = [];
     public id: Number;
     public title: string;
     public users: Users[];
     //Modal
-    @ViewChild('childModal') childModal: modalActionComponent;
+    //@ViewChild('childModal') childModal: modalActionComponent;
     constructor(
         private viewContainerRef: ViewContainerRef,
         private http: Http,
         public fb: FormBuilder) { // private dialogService: DialogService
         this.getData();
+        
         //this.UserForm = fb.group({
         //    'username': [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(50)])],
         //});
@@ -38,6 +42,15 @@ export class UsersComponent{
     //
     onSubmit() {
         this.submitted = true;
+        console.log(this.user);
+    }
+    active = true;
+
+    addHero() {
+        //this.hero = new Hero(42, '', '');
+
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
     //CheckBox
     checkAll(ev) {
